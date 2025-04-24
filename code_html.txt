@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Event Planner Chatbot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chat-container {
+      width: 400px;
+      height: 600px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #3b82f6;
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      max-width: 75%;
+      padding: 12px 16px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .bot-message {
+      background-color: #e0f2fe;
+      align-self: flex-start;
+    }
+
+    .user-message {
+      background-color: #d1fae5;
+      align-self: flex-end;
+    }
+
+    .chat-footer {
+      display: flex;
+      padding: 15px;
+      background: #fff;
+      border-top: 1px solid #eee;
+    }
+
+    .chat-footer input {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .chat-footer button {
+      margin-left: 10px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .chat-footer button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">Community Event Planner</div>
+  <div class="chat-body" id="chatBody">
+    <div class="message bot-message">Hello! 👋 I'm your event assistant. How can I help you today?</div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const chatBody = document.getElementById('chatBody');
+    const userText = input.value.trim();
+
+    if (userText !== '') {
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user-message';
+      userMsg.textContent = userText;
+      chatBody.appendChild(userMsg);
+
+      // Simulate bot response
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot-message';
+
+        // Simple response logic
+        // Enhanced response logic
+if (userText.toLowerCase().includes("event")) {
+  botMsg.textContent = "Sure! Please provide the event name and date.";
+} else if (userText.toLowerCase().includes("Birthday")) {
+  botMsg.textContent = "Got it. Where would you like to host the event?";
+} else if (userText.toLowerCase().includes("In my house")) {
+  botMsg.textContent = "What time will the event start?";
+} else if (userText.toLowerCase().includes("7") || userText.toLowerCase().includes("people")) {
+  botMsg.textContent = "How many guests are you expecting?";
+} else if (userText.toLowerCase().includes("100")) {
+  botMsg.textContent = "Do you have a specific theme in mind for the event?";
+} else if (userText.toLowerCase().includes("budget")) {
+  botMsg.textContent = "What's your estimated budget for this event?";
+} else if (userText.toLowerCase().includes("food") || userText.toLowerCase().includes("catering")) {
+  botMsg.textContent = "Would you like to include catering or food stalls?";
+} else if (userText.toLowerCase().includes("music") || userText.toLowerCase().includes("dj")) {
+  botMsg.textContent = "Do you need music or a DJ for your event?";
+} else if (userText.toLowerCase().includes("decorate") || userText.toLowerCase().includes("decoration")) {
+  botMsg.textContent = "Would you like assistance with decorations?";
+} else if (userText.toLowerCase().includes("schedule") || userText.toLowerCase().includes("agenda")) {
+  botMsg.textContent = "Do you want to add a schedule or event agenda?";
+} else if (userText.toLowerCase().includes("help")) {
+  botMsg.textContent = "I can help you with event name, date, location, guest list, theme, budget, and more!";
+} else {
+  botMsg.textContent = "That's interesting! Could you tell me more?";
+}
+
+
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 500);
+
+      input.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  }
+
+  document.getElementById('userInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+
+</body>
+</html>
